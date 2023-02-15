@@ -1,12 +1,13 @@
 from django.db import models
 
 
-# Create your models here.
+# Custom model Manager
 class UserManager(models.Manager):
     def get_user_list(self):
         return self.get_queryset().all()
 
 
+# Create your models here.
 class User(models.Model):
     account = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
@@ -14,3 +15,6 @@ class User(models.Model):
 
     class Meta:
         db_table = "users"
+
+    def say(self):
+        print(self.account)
