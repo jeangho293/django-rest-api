@@ -6,6 +6,9 @@ class UserManager(models.Manager):
     def get_user_list(self):
         return self.get_queryset().all()
 
+    def get_user(self, **kwargs):
+        return self.get_queryset().filter(**kwargs).first()
+
 
 # Create your models here.
 class User(models.Model):
@@ -15,6 +18,3 @@ class User(models.Model):
 
     class Meta:
         db_table = "users"
-
-    def say(self):
-        print(self.account)

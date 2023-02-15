@@ -12,6 +12,3 @@ class UserSerializer(
     class Meta:
         model = User
         fields = ["id", "account", "password"]
-
-    def create(self, validated_data):
-        return User.manager.create(**validated_data)

@@ -8,10 +8,15 @@ from users.serializers import UserSerializer
 
 
 class UserView(APIView):
-    _service = UserService()
+    _service = UserService
     _serializer = UserSerializer
 
     def get(self, request):
-        data = self._service.list()
+        data = self._service().list()
         response = self._serializer(data, many=True)
-        return Response(response.data)
+        return Response({"data": response.data})
+
+    def post(self, request):
+        # NOTE: Need Validator
+        data = self._service().add(**request.data)
+        return Response({"data": data}, status=201)
