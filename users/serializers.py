@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from users.models import User
-from bcrypt import gensalt, hashpw
+from bcrypt import gensalt, hashpw, checkpw
 
 
 # Serializer를 적용하면 DB데이터가 dict형태로 변환된다.

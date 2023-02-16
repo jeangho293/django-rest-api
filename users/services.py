@@ -20,3 +20,14 @@ class UserService:
         )
         if serializer.is_valid():
             serializer.save()
+
+    def login(self, **kwargs) -> str:
+        account = kwargs.get("account")
+        password = kwargs.get("password")
+
+        user = self._user_serializer().find_one(account=account)
+        if not user:
+            raise ValueError("account or password is wrong.")
+        user.compare_password(plain_password=password)
+
+        return user.sign_token()
