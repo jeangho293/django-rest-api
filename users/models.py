@@ -12,6 +12,7 @@ class UserManager(models.Manager):
 class User(models.Model):
     account: str = models.CharField(max_length=255, unique=True)
     password: str = models.CharField(max_length=255)
+    create_at = models.DateTimeField(auto_now_add=True)
     manager = UserManager()
 
     class Meta:
